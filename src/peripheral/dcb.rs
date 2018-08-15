@@ -2,6 +2,8 @@
 
 use volatile_register::{RW, WO};
 
+use peripheral::DCB;
+
 /// Register block
 #[repr(C)]
 pub struct RegisterBlock {
@@ -13,4 +15,11 @@ pub struct RegisterBlock {
     pub dcrdr: RW<u32>,
     /// Debug Exception and Monitor Control
     pub demcr: RW<u32>,
+}
+
+impl DCB {
+    /// Is there a debugger attached?
+    pub fn is_debugger_attached(&self) -> bool {
+        self.dhcsr.read() & 0x1 == 1
+    }
 }
