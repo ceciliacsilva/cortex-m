@@ -45,7 +45,7 @@ pub struct RegisterBlock {
     ///
     /// On ARMv6-M, `shpr[0]` points to SHPR2
     #[cfg(armv6m)]
-    pub shpr: [RW<u32>; 2],
+    pub shpr: [RW<u8>; 8],
 
     /// System Handler Control and State
     pub shcrs: RW<u32>,
